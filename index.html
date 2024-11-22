@@ -56,7 +56,7 @@
                   class="p-2 outline-none"
                   placeholder="Year(s) To Repay"
                 />
-                <span class="p-2 font-bold bg-yellow-400">Years</span>
+                <span class="p-2 font-bold bg-yellow-400">Year(s)</span>
               </div>
             </div>
             <!-- mortgage terms/years div ends here -->
@@ -77,11 +77,11 @@
           <div class="flex flex-col justify-center gap-3">
             <h3 class="font-bold">Mortgage Type</h3>
             <div class="flex gap-2 p-3 border border-gray-500">
-              <input type="radio" name="repayment" id="repayment" />
+              <input type="radio" name="repayment" id="repayment-total" />
               <label for="repayment">Repayment</label>
             </div>
             <div class="flex gap-2 p-3 border border-gray-500">
-              <input type="radio" name="repayment" id="repayment" />
+              <input type="radio" name="repayment" id="repayment-interst" />
               <label for="repayment">Interest Only</label>
             </div>
           </div>
@@ -108,16 +108,16 @@
           </p>
 
           <div
-            class="flex flex-col gap-4 p-10 bg-gray-900 border-t-8 rounded-t-xl border-t-yellow-400"
+            class="flex flex-col gap-4 p-10 mt-4 bg-gray-800 border-t-8 rounded-t-xl border-t-yellow-400"
           >
-            <h3 class="font-semibold text-gray-300">Your repayments</h3>
+            <h3 class="font-semibold text-gray-300">Your Monthly repayments</h3>
             <h1 class="text-6xl font-bold text-yellow-400" id="monthly-payment">
               £0
             </h1>
 
             <div class="p-2 mt-6 border-t border-t-gray-200">
               <h3 class="font-semibold text-gray-300">
-                Today you will repay over the term
+                Total you will repay over the term
               </h3>
               <h1 class="text-4xl font-bold text-yellow-400" id="total-payment">
                 £0
@@ -127,6 +127,7 @@
 
           <!-- estimated amount to be payed div ends here  -->
         </div>
+        <!-- filled display div ends here -->
         <div
           id="empty-display"
           class="flex flex-col items-center justify-center align-middle empty"
@@ -145,6 +146,6 @@
     </div>
     <!-- container div ends here -->
 
-    <script src="app.js"></script>
+    <script src="./scripts/app.js" type="module"></script>
   </body>
 </html>
