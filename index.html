@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link
       rel="icon"
       type="image/png"
@@ -19,6 +18,7 @@
     >
       <div class="loader"></div>
     </div>
+    <!-- loader and backdrop container ends here -->
     <div
       class="container flex flex-col md:flex-row md:h-[75vh] md:w-[90%] max-w-5xl bg-white shadow-lg"
     >
@@ -26,54 +26,15 @@
       <div class="flex flex-col flex-1 p-4 bg-white">
         <div class="flex items-center justify-between gap-4 card">
           <h1 class="text-2xl font-bold">Mortgage Calculator</h1>
-          <a href="" class="underline">Clear All</a>
+          <a href="" class="underline clear-btn">Clear All</a>
         </div>
 
         <form action="" class="space-y-3" id="mortgage-form">
-          <label for="amount">Mortgage Amount</label> <br />
-          <div
-            class="inline-flex items-center border border-gray-400 rounded focus-within:border-yellow-400"
-          >
-            <span class="p-2 font-bold bg-yellow-400">£</span>
-            <input
-              type="number"
-              id="amount"
-              class="p-2 outline-none"
-              placeholder="Enter an amount"
-            />
-          </div>
-          <!-- mortgage amount div ends here -->
-
+          <div class="error-amount"></div>
           <div class="gap-2 md:flex">
-            <div>
-              <label for="years">Mortgage Terms</label> <br />
-              <div
-                class="inline-flex items-center border border-gray-400 rounded focus-within:border-yellow-400"
-              >
-                <input
-                  type="number"
-                  id="years"
-                  class="p-2 outline-none"
-                  placeholder="Year(s) To Repay"
-                />
-                <span class="p-2 font-bold bg-yellow-400">Year(s)</span>
-              </div>
-            </div>
-            <!-- mortgage terms/years div ends here -->
-
-            <div>
-              <label for="interest">Interest rate</label> <br />
-              <div
-                class="inline-flex items-center border border-gray-400 rounded focus-within:border-yellow-400"
-              >
-                <input type="number" id="interest" class="p-2 outline-none" />
-                <span class="p-2 font-bold bg-yellow-400">Rates(%)</span>
-              </div>
-            </div>
-            <!--interest rates div ends here  -->
+            <div class="flex-1 error-years"></div>
+            <div class="flex-1 error-interest"></div>
           </div>
-          <!-- mortgage inputs container ends here -->
-
           <div class="flex flex-col justify-center gap-3">
             <h3 class="font-bold">Mortgage Type</h3>
             <div class="flex gap-2 p-3 border border-gray-500">
@@ -81,19 +42,17 @@
               <label for="repayment">Repayment</label>
             </div>
             <div class="flex gap-2 p-3 border border-gray-500">
-              <input type="radio" name="repayment" id="repayment-interst" />
+              <input type="radio" name="repayment" id="repayment-interest" />
               <label for="repayment">Interest Only</label>
             </div>
           </div>
-          <!-- mortgage type, repayment, interest div ends here -->
-
-          <button class="flex p-3 bg-yellow-400 rounded-xl">
+          <button class="flex p-3 bg-yellow-400 rounded-xl calculate-btn">
             <img src="./assets/images/icon-calculator.svg" alt="" />
             <span class="font-semibold">Calculate Repayments</span>
           </button>
         </form>
       </div>
-      <!-- left div ends here  -->
+      <!-- left div ends here -->
 
       <!-- Right Div -->
       <div
@@ -103,8 +62,8 @@
           <h3 class="text-2xl font-bold text-white">Your Results</h3>
           <p class="text-white">
             Your Results are shown below based on the information you provided.
-            To adjust the results edit the forma and click "Calculate
-            repayments" again.
+            To adjust the results edit the form and click "Calculate repayments"
+            again.
           </p>
 
           <div
@@ -124,27 +83,20 @@
               </h1>
             </div>
           </div>
-
-          <!-- estimated amount to be payed div ends here  -->
         </div>
-        <!-- filled display div ends here -->
         <div
           id="empty-display"
           class="flex flex-col items-center justify-center align-middle empty"
         >
           <img src="./assets/images/illustration-empty.svg" alt="" />
-
           <h1 class="text-2xl font-bold text-white">Results shown here</h1>
           <p class="text-center text-white">
             Complete the form and click “calculate repayments” to see what your
             monthly repayments would be.
           </p>
         </div>
-        <!-- repayment div container ends here  -->
       </div>
-      <!-- right div ends here  -->
     </div>
-    <!-- container div ends here -->
 
     <script src="./scripts/app.js" type="module"></script>
   </body>

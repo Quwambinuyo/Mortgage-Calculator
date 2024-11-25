@@ -1,31 +1,54 @@
-// Function to save data to local storage
-export const saveToLocalStorage = (data) => {
-  localStorage.setItem("mortgageData", JSON.stringify(data));
-};
+// localstorage.js
 
-// Function to load data from local storage
-export const loadFromLocalStorage = (
-  amountInput,
-  yearsInput,
-  interestInput,
-  monthlyPaymentEl,
-  totalPaymentEl,
-  emptyDisplay,
-  filledDisplay
-) => {
-  const savedData = JSON.parse(localStorage.getItem("mortgageData"));
-  if (savedData) {
-    // Populate input fields with saved values
-    amountInput.value = savedData.amount || "";
-    yearsInput.value = savedData.years || "";
-    interestInput.value = savedData.interest || "";
+// Get saved values from local storage and populate the form
+export function populateFormFromLocalStorage() {
+  const storedData = JSON.parse(localStorage.getItem("mortgageData"));
+  if (storedData) {
+    document.getElementById("amount").value = storedData.amount || "";
+    document.getElementById("years").value = storedData.years || "";
+    document.getElementById("interest").value = storedData.interestRate || "";
+    document.getElementById("monthly-payment").textContent = `£${
+      storedData.monthlyPayment || "0.00"
+    }`;
+    document.getElementById("total-payment").textContent = `£${
+      storedData.totalPayment || "0.00"
+    }`;
 
-    // Update results display if saved results exist
-    if (savedData.monthlyPayment && savedData.totalPayment) {
-      monthlyPaymentEl.textContent = `£${savedData.monthlyPayment}`;
-      totalPaymentEl.textContent = `£${savedData.totalPayment}`;
-      emptyDisplay.style.display = "none";
-      filledDisplay.style.display = "block";
-    }
+    document.getElementById("empty-display").style.display = "none";
+    document.getElementById("filled-display").style.display = "block";
   }
-};
+}
+
+// Save form data to localStorage
+export function saveFormDataToLocalStorage(
+  amount,
+  years,
+  interestRate,
+  monthlyPayment,
+  totalPayment
+) {
+  localStorage.setItem(
+    "mortgageData",
+    JSON.stringify({
+      amount,
+      years,
+      interestRate,
+      monthlyPayment,
+      totalPayment,
+    })
+  );
+}
+
+// Clear all saved data from localStorage
+export function clearFromStorage() {
+  localStorage.removeItem("mortgageData");
+  document.getElementById("empty-display").style.display = "flex";
+  document.getElementById("filled-display").style.display = "none";
+  document.getElementById("monthly-payment").textContent = "£0.00";
+  document.getElementById("total-payment").textContent = "£0.00";
+
+  // Reset form fields
+  document.getElementById("amount").value = "";
+  document.getElementById("years").value = "";
+  document.getElementById("interest").value = "";
+}
