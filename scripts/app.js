@@ -4,6 +4,7 @@ import {
   clearFromStorage,
 } from "./localstorage.js";
 
+// Global scope for my elements in the form and outside of it
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("mortgage-form");
   const errorAmountDiv = document.querySelector(".error-amount");
@@ -15,14 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const monthlyPaymentEl = document.getElementById("monthly-payment");
   const totalPaymentEl = document.getElementById("total-payment");
 
-  // Render error messages dynamically
+  // Render error messages dynamically to the UI
   function renderErrorStates({ amount, years, interest }) {
-    // Retain current input values
+    // Retain current input values to still be showing after the modal has been fired
     const currentAmount = document.getElementById("amount")?.value || "";
     const currentYears = document.getElementById("years")?.value || "";
     const currentInterest = document.getElementById("interest")?.value || "";
 
-    // Render amount error (show error only if invalid)
+    // Render amount inputs and labels dynamically and (show error only if invalid)
     errorAmountDiv.innerHTML = `
       <label for="amount">Mortgage Amount</label><br />
       <div class="inline-flex items-center border w-[100%] ${
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     `;
 
-    // Render years error (show error only if invalid)
+    // Render years inputs and labels dynamically and (show error only if invalid)
     errorYearsDiv.innerHTML = `
       <label for="years">Mortgage Term (Years)</label><br />
       <div class="flex items-center border w-full ${
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     `;
 
-    // Render interest error (show error only if invalid)
+    // Render interest inputs and label dynamically and (show error only if invalid)
     errorInterestDiv.innerHTML = `
       <label for="interest">Mortgage Interest Rate</label><br />
       <div class="flex bg-purple-800 items-center border w-full ${
@@ -103,10 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    console.log(document.getElementById("amount").value);
-    console.log(document.getElementById("interest").value);
-    console.log(document.getElementById("years").value);
-
     const amountInput = document.getElementById("amount");
     const yearsInput = document.getElementById("years");
     const interestInput = document.getElementById("interest");
@@ -115,35 +112,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const years = parseFloat(yearsInput?.value || 0);
     const interestRate = parseFloat(interestInput?.value || 0);
 
+    // Error states starts here
     const hasErrors = {
       amount: isNaN(amount) || amount <= 0,
       years: isNaN(years) || years <= 0,
       interest: isNaN(interestRate) || interestRate <= 0,
     };
 
-    console.log(document.getElementById("amount").value);
-    console.log(document.getElementById("interest").value);
-    console.log(document.getElementById("years").value);
-
-    // Dynamically render errors
+    // Dynamically render errors to the UI
     renderErrorStates({
       amount: !hasErrors.amount,
       years: !hasErrors.years,
       interest: !hasErrors.interest,
     });
 
-    console.log(document.getElementById("amount").value);
-    console.log(document.getElementById("interest").value);
-    console.log(document.getElementById("years").value);
+    // Set default error states on page load
+    renderErrorStates({ amount: true, years: true, interest: true });
 
     if (hasErrors.amount || hasErrors.years || hasErrors.interest) {
       emptyDisplay.style.display = "flex";
       filledDisplay.style.display = "none";
       return;
     }
+    // Error state ends here
 
+    // modal gets fired after the form Submit has been engaged
     modal.style.display = "flex";
 
+    // Calculation for the form inputs starts here
     const monthlyInterestRate = interestRate / 100 / 12;
     const numberOfPayments = years * 12;
     const monthlyPayment =
@@ -152,11 +148,9 @@ document.addEventListener("DOMContentLoaded", () => {
         : (amount * monthlyInterestRate) /
           (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
     const totalPayment = monthlyPayment * numberOfPayments;
+    // Calculation for the form inputs ends here
 
-    console.log(document.getElementById("amount").value);
-    console.log(document.getElementById("interest").value);
-    console.log(document.getElementById("years").value);
-
+    // Modal timeout and inputs saved to local storage starts here
     setTimeout(() => {
       modal.style.display = "none";
       monthlyPaymentEl.textContent = `£${monthlyPayment.toFixed(2)}`;
@@ -175,13 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
       filledDisplay.style.display = "block";
     }, 2000);
 
-    console.log(document.getElementById("amount").value);
-    console.log(document.getElementById("interest").value);
-    console.log(document.getElementById("years").value);
+    // Modal timeout and inputs saved to local storage ends here
   });
-
-  // Set default error states on page load
-  renderErrorStates({ amount: true, years: true, interest: true });
 
   // Load form data from localStorage when the page is loaded
   populateFormFromLocalStorage();
