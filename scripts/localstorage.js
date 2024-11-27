@@ -4,9 +4,9 @@
 export function populateFormFromLocalStorage() {
   const storedData = JSON.parse(localStorage.getItem("mortgageData"));
   if (storedData) {
-    document.getElementById("amount").value = storedData.amount || "";
-    document.getElementById("years").value = storedData.years || "";
-    document.getElementById("interest").value = storedData.interestRate || "";
+    document.getElementById("amount").value = storedData.amount;
+    document.getElementById("years").value = storedData.years;
+    document.getElementById("interest").value = storedData.interestRate;
     document.getElementById("monthly-payment").textContent = `£${
       storedData.monthlyPayment || "0.00"
     }`;

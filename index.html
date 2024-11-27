@@ -19,23 +19,22 @@
       <div class="loader"></div>
     </div>
     <!-- loader and backdrop container ends here -->
-    <div
-      class="container flex flex-col md:flex-row md:h-[75vh] md:w-[90%] max-w-5xl bg-white shadow-lg"
-    >
+
+    <div class="container flex flex-col bg-white shadow-lg sm:flex-row">
       <!-- Left Div -->
-      <div class="flex flex-col flex-1 p-4 bg-white">
-        <div class="flex items-center justify-between gap-4 card">
+      <div class="flex flex-col gap-3 p-4 bg-white sm:w-1/2">
+        <div class="flex gap-2 md:items-center md:justify-between md:flex card">
           <h1 class="text-2xl font-bold">Mortgage Calculator</h1>
-          <a href="" class="underline clear-btn">Clear All</a>
+          <button class="underline clear-btn">Clear All</button>
         </div>
 
-        <form action="" class="space-y-3" id="mortgage-form">
-          <div class="error-amount"></div>
-          <div class="gap-2 md:flex">
-            <div class="flex-1 error-years"></div>
-            <div class="flex-1 error-interest"></div>
+        <form class="" id="mortgage-form">
+          <div class="space-y-2 error-amount"></div>
+          <div class="gap-3 lg:flex">
+            <div class="mt-3 space-y-2 error-years"></div>
+            <div class="mt-3 space-y-2 error-interest"></div>
           </div>
-          <div class="flex flex-col justify-center gap-3">
+          <div class="flex flex-col justify-center gap-3 mb-3">
             <h3 class="font-bold">Mortgage Type</h3>
             <div class="flex gap-2 p-3 border border-gray-500">
               <input type="radio" name="repayment" id="repayment-total" />
@@ -46,17 +45,20 @@
               <label for="repayment">Interest Only</label>
             </div>
           </div>
-          <button class="flex p-3 bg-yellow-400 rounded-xl calculate-btn">
+          <button
+            class="flex p-3 bg-yellow-400 rounded-xl calculate-btn"
+            type="submit"
+          >
             <img src="./assets/images/icon-calculator.svg" alt="" />
             <span class="font-semibold">Calculate Repayments</span>
           </button>
         </form>
       </div>
-      <!-- left div ends here -->
+      <!-- Left Div ends here -->
 
       <!-- Right Div -->
       <div
-        class="flex flex-col flex-1 gap-3 p-10 bg-gray-900 md:rounded-bl-[120px]"
+        class="flex flex-col gap-3 p-10 bg-gray-900 md:rounded-bl-[120px] sm:w-1/2"
       >
         <div id="filled-display" class="hidden">
           <h3 class="text-2xl font-bold text-white">Your Results</h3>
@@ -70,7 +72,10 @@
             class="flex flex-col gap-4 p-10 mt-4 bg-gray-800 border-t-8 rounded-t-xl border-t-yellow-400"
           >
             <h3 class="font-semibold text-gray-300">Your Monthly repayments</h3>
-            <h1 class="text-6xl font-bold text-yellow-400" id="monthly-payment">
+            <h1
+              class="text-4xl font-bold text-yellow-400 md:text-6xl"
+              id="monthly-payment"
+            >
               £0
             </h1>
 
@@ -78,12 +83,16 @@
               <h3 class="font-semibold text-gray-300">
                 Total you will repay over the term
               </h3>
-              <h1 class="text-4xl font-bold text-yellow-400" id="total-payment">
+              <h1
+                class="text-4xl font-bold text-yellow-400 md:text-6xl"
+                id="total-payment"
+              >
                 £0
               </h1>
             </div>
           </div>
         </div>
+
         <div
           id="empty-display"
           class="flex flex-col items-center justify-center align-middle empty"
@@ -96,6 +105,7 @@
           </p>
         </div>
       </div>
+      <!-- Right Div ends here -->
     </div>
 
     <script src="./scripts/app.js" type="module"></script>
