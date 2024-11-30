@@ -34,21 +34,12 @@
             <div class="mt-3 space-y-2 error-years"></div>
             <div class="mt-3 space-y-2 error-interest"></div>
           </div>
-          <div class="flex flex-col justify-center gap-3 mb-3">
-            <h3 class="font-bold">Mortgage Type</h3>
-            <div class="flex gap-2 p-3 border border-gray-500">
-              <input type="radio" name="repayment" id="repayment-total" />
-              <label for="repayment">Repayment</label>
-            </div>
-            <div class="flex gap-2 p-3 border border-gray-500">
-              <input type="radio" name="repayment" id="repayment-interest" />
-              <label for="repayment">Interest Only</label>
-            </div>
-          </div>
-          <button
-            class="flex p-3 bg-yellow-400 rounded-xl calculate-btn"
-            type="submit"
-          >
+          <div
+            class="flex flex-col justify-center gap-3 my-3 mortgage-type-container"
+          ></div>
+
+          <!-- type="submit" -->
+          <button class="flex p-3 bg-yellow-400 rounded-xl calculate-btn">
             <img src="./assets/images/icon-calculator.svg" alt="" />
             <span class="font-semibold">Calculate Repayments</span>
           </button>
@@ -71,13 +62,17 @@
           <div
             class="flex flex-col gap-4 p-10 mt-4 bg-gray-800 border-t-8 rounded-t-xl border-t-yellow-400"
           >
-            <h3 class="font-semibold text-gray-300">Your Monthly repayments</h3>
-            <h1
-              class="text-4xl font-bold text-yellow-400 md:text-6xl"
-              id="monthly-payment"
-            >
-              £0
-            </h1>
+            <div>
+              <h3 class="font-semibold text-gray-300">
+                Your Monthly repayments
+              </h3>
+              <h1
+                class="text-4xl font-bold text-yellow-400 md:text-6xl"
+                id="monthly-payment"
+              >
+                £0
+              </h1>
+            </div>
 
             <div class="p-2 mt-6 border-t border-t-gray-200">
               <h3 class="font-semibold text-gray-300">
@@ -92,10 +87,11 @@
             </div>
           </div>
         </div>
+        <!-- filled-display div ends here -->
 
         <div
           id="empty-display"
-          class="flex flex-col items-center justify-center align-middle empty"
+          class="flex flex-col items-center justify-center empty"
         >
           <img src="./assets/images/illustration-empty.svg" alt="" />
           <h1 class="text-2xl font-bold text-white">Results shown here</h1>
